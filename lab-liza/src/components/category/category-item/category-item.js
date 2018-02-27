@@ -25,9 +25,9 @@ class CategoryItem extends React.Component {
   }
   render(){
     return(
-      <section onDoubleClick={this.handleDoubleClick}>
-        <h4>Category: {this.props.category.title}</h4>
-        <div>Budget: ${this.props.category.budget}</div>
+      <section >
+        <h4 onDoubleClick={this.handleDoubleClick}>Category: {this.props.category.title}</h4>
+        <div onDoubleClick={this.handleDoubleClick}>Budget: ${this.props.category.budget}</div>
         <button onClick={this.handleOnClick}>delete</button>
         {renderIf(this.state.updating,
           <CategoryForm
