@@ -1,7 +1,7 @@
 import React from 'react';
-import CategoryForm from '../category-form/category-form';
-import {renderIf} from '../../../lib/utils.js';
 import {connect} from 'react-redux';
+import {renderIf} from '../../../lib/utils.js';
+import CategoryForm from '../category-form/category-form';
 import {categoryUpdate} from '../../../actions/category-actions';
 import {categoryDelete} from '../../../actions/category-actions';
 
@@ -13,23 +13,28 @@ class CategoryItem extends React.Component {
       updating: false,
     };
     this.handleDoubleClick = this.handleDoubleClick.bind(this);
+    this.handleOnClick = this.handleOnClick.bind(this);
   }
 
   handleDoubleClick () {
     this.setState({updating: !this.state.updating});
+  }
+
+  handleOnClick () {
+    this.props.itemCategoryDelete(this.state);
   }
   render(){
     return(
       <section onDoubleClick={this.handleDoubleClick}>
         <h4>Category: {this.props.category.title}</h4>
         <div>Budget: ${this.props.category.budget}</div>
+        <button onClick={this.handleOnClick}>delete</button>
         {renderIf(this.state.updating,
           <CategoryForm
             category={this.props.category}
             buttonText='update'
             onComplete={this.props.itemCategoryUpdate}/>
         )}
-        <button></button>
       </section>
     );
   }
