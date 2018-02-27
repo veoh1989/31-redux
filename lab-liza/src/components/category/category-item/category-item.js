@@ -3,6 +3,7 @@ import CategoryForm from '../category-form/category-form';
 import {renderIf} from '../../../lib/utils.js';
 import {connect} from 'react-redux';
 import {categoryUpdate} from '../../../actions/category-actions';
+import {categoryDelete} from '../../../actions/category-actions';
 
 class CategoryItem extends React.Component {
   constructor(props){
@@ -28,6 +29,7 @@ class CategoryItem extends React.Component {
             buttonText='update'
             onComplete={this.props.itemCategoryUpdate}/>
         )}
+        <button></button>
       </section>
     );
   }
@@ -38,6 +40,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = (dispatch, getState) => ({
   itemCategoryUpdate: category => dispatch(categoryUpdate(category)),
+  itemCategoryDelete: category => dispatch(categoryDelete(category)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(CategoryItem);
